@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+
 namespace ConsoleApp4
 {
 
@@ -48,7 +49,7 @@ namespace ConsoleApp4
         }
     }
 
-    internal class NoFlyWings : FlyBehaivor
+    public class FlyNoWay : FlyBehaivor
     {
         public void Fly()
         {
@@ -82,8 +83,27 @@ namespace ConsoleApp4
             Console.WriteLine("all ducks float,even decoys!");
         }
 
+        //новый метод 
+        public void setFlyBehavior(FlyBehaivor fb)
+        {
+            flyBehaivor = fb;
+        }
+        //новый метод 
+        public void setQuackBehaivor(QuackBehavior qb)
+        {
+            quackBehavior = qb;
+        }
+
+
     }
 
+    public class FlyRocketPowered : FlyBehaivor
+    {
+        public void Fly()
+        {
+            Console.WriteLine("I'm flying with a rocket");
+        }
+    }
 
     public class MallardDuck : Duck
     {
@@ -101,16 +121,42 @@ namespace ConsoleApp4
 
     }
 
+    public class ModelDuck : Duck
+    {
+        public ModelDuck()
+        {
+           flyBehaivor = new FlyNoWay();
+           quackBehavior = new Quack();
+
+        }
+        public override void Display() 
+        {
+            Console.WriteLine("I'm Model duck");
+        }
+    }
 
     internal class Program
     {
         static void Main(string[] args)
         {
-            Duck mallard = new MallardDuck();
-            mallard.performQuack();
-            mallard.performFly();
 
-            Console.ReadLine() ;
+            //Duck mallard = new MallardDuck();
+            //mallard.performQuack();
+            //mallard.performFly();
+
+            //Console.ReadLine() ;
+
+            //Duck model = new ModelDuck();
+            //model.Display();
+            //model.performFly();
+            //model.setFlyBehavior(new FlyRocketPowered());
+            //model.performFly();
+            //Console.ReadLine();
+
+            Character character = new Queen();
+            character.setWeapon(new KnifeBehavior());
+            character.Figth();
+            Console.ReadLine();
         }
     }
    
